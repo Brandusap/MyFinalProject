@@ -4,22 +4,52 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class VideoPlayerPage extends BasePage{
-    public static String VIDEO_URL = BASE_URL+"watch?v=6AIa3kdKFhg&ab_channel=7clouds";
-    public VideoPlayerPage(WebDriver driver){
+public class CreateAccountPage extends BasePage{
+    public static String CREATEACCOUNT_URL = BASE_URL+"customer/account/create/";
+    public CreateAccountPage(WebDriver driver){
         super(driver);
     }
 
-    @FindBy(xpath = "//*[@id=\"movie_player\"]/div[32]/div[2]/div[1]/button") private WebElement playButton;
-    @FindBy(xpath = "//*[@id=\"movie_player\"]/div[32]/div[2]/div[1]/a[2]") private WebElement nextButton;
-    @FindBy(xpath = "//*[@id=\"movie_player\"]/div[32]/div[2]/div[1]/span/button") private WebElement muteButton;
-    @FindBy(xpath = "//*[@id=\"movie_player\"]/div[32]/div[2]/div[1]/span/div/div") private WebElement volumeSlider;
-    @FindBy(xpath = "//*[@id=\"movie_player\"]/div[32]/div[2]/div[2]/button[2]/div/div") private WebElement autoplayButton;
-    @FindBy(xpath = "//*[@id=\"movie_player\"]/div[32]/div[2]/div[2]/button[4]") private WebElement settingsButton;
-    @FindBy(xpath = "//*[@id=\"movie_player\"]/div[32]/div[2]/div[2]/button[6]") private WebElement miniplayerButton;
-    @FindBy(xpath = "//*[@id=\"movie_player\"]/div[35]/div[2]/div[2]/button[8]") private WebElement TheaterMode;
-    @FindBy(xpath = "//*[@id=\"movie_player\"]/div[32]/div[2]/div[2]/button[10]") private WebElement fullscreenButton;
-    @FindBy(xpath = "/*[@id=\"segmented-like-button\"]/ytd-toggle-button-renderer/yt-button-shape/button/yt-touch-feedback-shape/div/div[2]") private WebElement likeButton;
-    @FindBy(xpath = "//*[@id=\"segmented-dislike-button\"]/ytd-toggle-button-renderer/yt-button-shape/button/yt-touch-feedback-shape/div/div[2]") private WebElement dislikeButton;
+    @FindBy(xpath = "//*[@id=\"firstname\"]") private WebElement firstNameInput;
+    @FindBy(id = "lastname") private WebElement lastNameInput;
+    @FindBy(id = "email_address") private WebElement emailInput;
+    @FindBy(id = "password") private WebElement passwordInput;
+    @FindBy(id = "password-confirmation") private WebElement confirmPasswordInput;
+    @FindBy(xpath = "//*[@id=\"form-validate\"]/div/div[1]/button") private WebElement createButton;
+    @FindBy(xpath = "//*[@id=\"maincontent\"]/div[1]/div[2]/div/div") private WebElement successAlert;
+    @FindBy(xpath = "//*[@id=\"maincontent\"]/div[2]/div[2]/div/div/div") private WebElement errorAlert;
+    @FindBy(id = "password-confirmation-error") private WebElement errorPasswordAlert;
 
+    public void enterFirstName(String firstName){
+        firstNameInput.sendKeys(firstName);
+    }
+    public void enterLastName(String lastName){
+        lastNameInput.sendKeys(lastName);
+    }
+    public void enterEmail(String email){
+        emailInput.sendKeys(email);
+    }
+    public void enterPassword(String password){
+        passwordInput.sendKeys(password);
+    }
+    public void enterConfirmPassword(String confirmPassword){
+        confirmPasswordInput.sendKeys(confirmPassword);
+    }
+    public void clickCreateButton(){
+        createButton.click();
+    }
+    public String getAlertText(){
+        return successAlert.getText();
+    }
+    public String getAlertText2(){
+        return errorAlert.getText();
+    }
+    public String getAlertText3(){
+        return errorPasswordAlert.getText();
+    }
+    public boolean checkPasswords(){
+        String password = passwordInput.getAttribute("value");
+        String confirmPassword = confirmPasswordInput.getAttribute("value");
+        return password.equals(confirmPassword);
+    }
 }

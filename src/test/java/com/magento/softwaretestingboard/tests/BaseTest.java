@@ -1,4 +1,4 @@
-package com.youtube.tests;
+package com.magento.softwaretestingboard.tests;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -14,9 +14,17 @@ public class BaseTest {
         driver = new ChromeDriver();
     }
 
-    @AfterMethod(alwaysRun = true)
+    //@AfterMethod(alwaysRun = true)
     public void tearDown(){
         driver.manage().deleteAllCookies();
         driver.close();
+    }
+
+    public void waitForNumberOfSeconds(int seconds){
+        try {
+            Thread.sleep(seconds*1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
