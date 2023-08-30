@@ -40,7 +40,7 @@ public class AdvancedSearchTest extends BaseTest{
         advancedSearchPage.enterDescription("Natural Cocona® technology");
         advancedSearchPage.clickSearchButton();
         waitForNumberOfSeconds(3);
-        Assert.assertTrue(advancedSearchPage.getAlertText().contains("1 item"));
+        Assert.assertTrue(advancedSearchPage.getAlertText().contains("2 items"));
         advancedSearchPage.clickProductButton();
         Assert.assertTrue(advancedSearchPage.getDescriptionText().contains("Natural Cocona® technology"));
     }
